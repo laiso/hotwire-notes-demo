@@ -1,0 +1,34 @@
+<%= form_with model: note, autocomplete: "off", data: {turbo_action: :advance} do |form| %>
+  <div class="note-editor">
+    <div class="note-editor-form">
+      <label class="offscreen" for="note-title-input">
+        Enter a title for your note
+      </label>
+      <%= form.text_field :title, id: "note-title-input" %>
+      <label class="offscreen" for="note-body-input">
+        Enter the body for your note
+      </label>
+      <div class="field" id="note-body-input">
+        <%= form.rich_text_area :body %>
+      </div>
+    </div>
+    <div class="note-editor-preview">
+      <div class="note-editor-menu" role="menubar">
+        <%= form.submit "Done", class: "note-editor-done" %>
+        <%= button_to "Done", :notes, type: :submit, class: "note-editor-done" %>
+        <%= button_to "Delete", note, method: :delete, class: "note-editor-delete" if note.id  %>
+      </div>
+      <div class="label label--preview" role="status">
+        Preview
+      </div>
+      <h1 class="note-title">
+        <%= note.title %>
+      </h1>
+      <div class="note-preview">
+        <div class="text-with-markdown">
+          <%= note.body %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
