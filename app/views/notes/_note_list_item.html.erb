@@ -1,12 +1,16 @@
-<div class="sidebar-note-list-item" id="list_item_<%= dom_id note %>">
-  <header class="sidebar-note-header">
-    <strong>
-      <%= note.title %>
-    </strong>
-    <small>9:34 PM</small>
-  </header>
-  <button class="sidebar-note-open" style="border:1px solid transparent">Open note for preview</button>
-  <button class="sidebar-note-toggle-expand">
-    <img src="/chevron-up.svg" width="10px" height="10px" alt="Expand">
-  </button>
-</div>
+<%= link_to note, data: { turbo_frame: :main, turbo_action: :advance } do %>
+  <li id="list_item_<%= dom_id note %>">
+    <div class="sidebar-note-list-item">
+      <header class="sidebar-note-header">
+        <strong>
+          <%= note.title %>
+        </strong>
+        <small>9:34 PM</small>
+      </header>
+      <button class="sidebar-note-open" style="border:1px solid transparent">Open note for preview</button>
+      <button class="sidebar-note-toggle-expand">
+        <img src="/chevron-up.svg" width="10px" height="10px" alt="Expand">
+      </button>
+    </div>
+  </li>
+<% end %>

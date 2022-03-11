@@ -1,13 +1,9 @@
 <%= turbo_frame_tag :notes do %>
   <div>
     <nav>
-      <ul class="notes-list">
+      <ul class="notes-list" id="sidebar-notes-list">
         <% @notes.each do |note| %>
-          <li>
-            <%= link_to note, data: { turbo_frame: :main, turbo_action: :advance } do %>
-              <%= render "notes/note_list_item", note: note %>
-            <% end %>
-          </li>
+          <%= render "notes/note_list_item", note: note %>
         <% end %>
       </ul>
     </nav>

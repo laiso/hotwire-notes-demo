@@ -3,7 +3,8 @@ class NotesController < ApplicationController
 
   # GET /notes or /notes.json
   def index
-    @notes = params[:q] ? Note.where('title LIKE ?', "%#{params[:q]}%") : Note.all
+    query = params[:q] ? Note.where('title LIKE ?', "%#{params[:q]}%") : Note.all
+    @notes = query.order(created_at: :desc).limit(100)
   end
 
   # GET /notes/1 or /notes/1.json
@@ -28,6 +29,11 @@ class NotesController < ApplicationController
           redirect_to note_url(@note), notice: "Note was successfully created."
         end
         format.json { render :ashow, status: :created, location: @note }
+        format.turbo_stream {
+          render turbo_stream: [
+            turbo_stream.prepend("sidebar-notes-list", partial: 'notes/note_list_item', locals: { note: @note }),
+          ]
+        }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @note.errors, status: :unprocessable_entity }
@@ -39,8 +45,14 @@ class NotesController < ApplicationController
   def update
     respond_to do |format|
       if @note.update(note_params)
-        format.html { redirect_to note_url(@note), notice: "Note was successfully updated." }
         format.json { render :ashow, status: :ok, location: @note }
+        format.turbo_stream {
+          render turbo_stream: [
+            turbo_stream.replace("main", @note),
+            turbo_stream.replace("list_item_note_#{@note.id}", partial: 'notes/note_list_item', locals: { note: @note }),
+          ]
+        }
+        format.html { redirect_to note_url(@note), notice: "Note was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @note.errors, status: :unprocessable_entity }

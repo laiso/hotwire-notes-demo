@@ -8,9 +8,10 @@
     </div>
     <div class="note-menu" role="menubar">
       <small class="note-updated-at" role="status">Last updated on 5 Mar 2022 at 4:27 PM</small>
-      <%= link_to edit_note_path(note), data: {"turbo-frame": "main", "turbo-action": "replace"} do %>
+      <%= link_to edit_note_path(note), data: { "turbo-frame": "main", "turbo-action": "replace" } do %>
         <button login="laiso" class="edit-button edit-button--solid" role="menuitem">
-          Edit<img src="https://avatars.githubusercontent.com/laiso?s=40" alt="User Avatar" title="laiso" class="avatar">
+          Edit
+          <img src="https://avatars.githubusercontent.com/laiso?s=40" alt="User Avatar" title="laiso" class="avatar">
         </button>
       <% end %>
     </div>
