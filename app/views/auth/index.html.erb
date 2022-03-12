@@ -1,0 +1,9 @@
+<%= form_with url: auth_signin_path do |form| %>
+  <%= form.text_field :name %>
+  <%= form.password_field :password %>
+  <%= form.submit "Log In" %>
+  <%= link_to "Sign Up", new_auth_url %>
+  <div class="error">
+    <%= notice %>
+  </div>
+<% end %>

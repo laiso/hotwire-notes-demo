@@ -220,6 +220,10 @@ hr {
   overflow: hidden;
 }
 
+.error {
+  color: var(--red-25);
+}
+
 .col {
   height: 100%;
 }

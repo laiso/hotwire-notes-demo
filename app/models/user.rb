@@ -1,8 +1,4 @@
 class User < ApplicationRecord
-  kredis_hash :notes, key: 'rsc:notes_2', typed: :json
-
-  def note(id)
-    notes[id]
-  end
-
+  has_secure_password
+  validates :name, uniqueness: { case_sensitive: false }, presence: true
 end

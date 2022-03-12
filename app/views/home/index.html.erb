@@ -1,3 +1,21 @@
-<%= turbo_frame_tag :main, loading: :lazy do %>
-  Click a note on the left to view something! 🥺
+<section class="col sidebar" data-turbo-permanent>
+  <%= render "layouts/logo" %>
+  <section class="sidebar-menu" role="menubar">
+    <%= form_tag notes_path, method: :get, class: "search", roke: "search", data: {turbo_frame: :notes} do %>
+      <%= text_field_tag :q, params[:q], id: "sidebar-search-input", oninput: "requestSubmit()" %>
+    <% end %>
+    <%= button_tag type: :button, class: "edit-button edit-button--solid" do %>
+      <%= link_to "Add", new_note_path, class: "link--unstyled", data: { "turbo-frame": "main", "turbo-action": "replace" } %>
+    <% end %>
+  </section>
+
+  <%= turbo_frame_tag :notes, src: notes_path, loading: "lazy" do %>
+  <% end %>
+</section>
+<section class="col note-viewer">
+  <%= turbo_frame_tag :main do %>
+    <%= turbo_frame_tag :main, loading: :lazy do %>
+      Click a note on the left to view something! 🥺
+    <% end %>
 <% end %>
+</section>
