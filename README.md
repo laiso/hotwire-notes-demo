@@ -1,24 +1,10 @@
-# README
+# Hotwire Notes
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# macOS
 
-Things you may want to cover:
+```bash
+brew install libpq
+bundle config build.pg --with-pg=/opt/homebrew/opt/libpq
+bundle install
+```
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
