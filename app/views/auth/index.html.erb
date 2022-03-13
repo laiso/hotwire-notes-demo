@@ -1,9 +1,34 @@
-<%= form_with url: auth_signin_path do |form| %>
-  <%= form.text_field :name %>
-  <%= form.password_field :password %>
-  <%= form.submit "Log In" %>
-  <%= link_to "Sign Up", new_auth_url %>
-  <div class="error">
-    <%= notice %>
+<div class="screen-center">
+  <div>
+    <%= render "layouts/logo" %>
   </div>
-<% end %>
+  <div>
+    <%= form_with url: auth_signin_path do |form| %>
+      <div class="label">
+        <%= form.label :name, "Name:" %>
+      </div>
+      <div class="">
+        <%= form.text_field :name %>
+      </div>
+
+      <div class="label">
+        <%= form.label :password, "Password" %>
+      </div>
+      <div>
+        <%= form.password_field :password %>
+      </div>
+
+      <div class="">
+        <%= form.submit "Sign In" %>
+      </div>
+
+      <div>
+        <%= link_to "Sign Up", new_auth_path %>
+      </div>
+
+      <div class="error">
+        <%= notice %>
+      </div>
+    <% end %>
+  </div>
+</div>
