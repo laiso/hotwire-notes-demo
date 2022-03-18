@@ -1,5 +1,6 @@
-<%= link_to note, data: { turbo_frame: :main, turbo_action: :advance } do %>
-  <li id="list_item_<%= dom_id note %>">
+<%= link_to note, id: "list_item_#{dom_id(note)}",
+            data: { turbo_frame: :main, turbo_action: :advance } do %>
+  <li>
     <div class="sidebar-note-list-item">
       <header class="sidebar-note-header">
         <strong>

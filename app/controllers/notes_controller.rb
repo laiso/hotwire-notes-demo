@@ -1,4 +1,7 @@
 class NotesController < ApplicationController
+  layout 'notes'
+
+  before_action :authenticate
   before_action :set_note, only: %i[ show edit update destroy ]
 
   # GET /notes or /notes.json
@@ -8,7 +11,12 @@ class NotesController < ApplicationController
   end
 
   # GET /notes/1 or /notes/1.json
-  def show() end
+  def show()
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
+  end
 
   # GET /notes/new
   def new
@@ -46,12 +54,6 @@ class NotesController < ApplicationController
     respond_to do |format|
       if @note.update(note_params)
         format.json { render :ashow, status: :ok, location: @note }
-        format.turbo_stream {
-          render turbo_stream: [
-            turbo_stream.replace("main", @note),
-            turbo_stream.replace("list_item_note_#{@note.id}", partial: 'notes/note_list_item', locals: { note: @note }),
-          ]
-        }
         format.html { redirect_to note_url(@note), notice: "Note was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }

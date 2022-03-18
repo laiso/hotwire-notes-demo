@@ -11,7 +11,7 @@ class AuthController < ApplicationController
     user.password = params[:password]
     if user.valid? && user.save
       session[:user_id] = user.id
-      redirect_to '/'
+      redirect_to root_path
     else
       redirect_to new_auth_path, notice: 'Invalid username or password'
     end
@@ -21,7 +21,7 @@ class AuthController < ApplicationController
     user = User.find_by(name: params[:name])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to '/'
+      redirect_to root_path
     else
       redirect_to '/auth', notice: 'Invalid username or password'
     end
