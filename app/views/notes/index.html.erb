@@ -1,4 +1,4 @@
-<%= turbo_stream.replace :notes, data: { turbo_frame: :main, turbo_action: :advance } do %>
+<%= turbo_frame_tag "sidebar" do %>
   <div>
     <nav>
       <ul class="notes-list" id="sidebar-notes-list">
@@ -10,6 +10,6 @@
   </div>
 <% end %>
 
-<%= turbo_frame_tag :main do %>
+<%= turbo_frame_tag "main" do %>
   Click a note on the left to view something! 🥺
 <% end %>

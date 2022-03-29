@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "notes#index"
+  root "home#index"
   resources :notes
 
   resources :auth, only: [:index, :new]

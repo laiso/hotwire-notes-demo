@@ -1,3 +1,5 @@
+<%= turbo_frame_tag "sidebar", src: notes_path, loading: :lazy %>
+
 <%= turbo_frame_tag :main do %>
   <%= render @note %>
 <% end %>
